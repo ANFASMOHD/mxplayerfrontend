@@ -41,7 +41,7 @@ const LandingPage = () => {
       </Row>
 
       <div className="container d-flex justify-content-center align-items-center w-100 flex-column ">
-        <h3>Feacture</h3>
+        <h3>Feature</h3>
         <div className="d-flex gap-5 mt-5">
           <Card style={{ width: "18rem" }}>
             <Card.Img

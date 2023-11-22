@@ -6,7 +6,9 @@ import { uploadAllViedos } from "../services/appApi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Add = () => {
+const Add =({setUploadVideoStatus}) =>{
+  
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,6 +33,15 @@ const Add = () => {
       const responce = await uploadAllViedos(viedo);
       if (responce.status >= 200 && responce.status <= 300) {
         toast.success(`${responce.data.caption} is succesfully upload`);
+        
+        setUploadVideoStatus(responce.data)
+
+        setViedo({
+          id: "",
+          caption: "",
+          url: "",
+          embededLink: "",
+        })
         handleClose();
       } else {
         console.log(responce);
@@ -43,7 +54,7 @@ const Add = () => {
   return (
     <>
       <div className="d-flex align-items-center">
-        <h4>Upload a new Viedo</h4>
+        <h4>Upload a New Video</h4>
         <button onClick={handleShow} className="btn">
           <i className="fa-solid fa-cloud-arrow-up fa-2x"></i>
         </button>
@@ -56,11 +67,11 @@ const Add = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title className="text-warning">
-            <i className="fa-solid fa-film me-3"></i>Upload Viedo
+            <i className="fa-solid fa-film me-3"></i>Upload Video
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Please fill the form completly</p>
+          <p>Please Fill The Form Completly</p>
 
           <form className="border border-secondry rounded p-3">
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -107,7 +118,7 @@ const Add = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer position="top-center" theme="colored"/>
+      <ToastContainer position="top-center" theme="colored" autoClose={2000}/>
     </>
   );
 };

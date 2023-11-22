@@ -55,9 +55,9 @@ const Footer = () => {
           </Link>
         </div>
         <div className="contact">
-          <h4>Contact Us</h4>
+          <h4>Contact Us </h4>
           <div className="d-flex gap-3">
-            <input className="form-control " type="text" />
+            <input className="form-control " type="text"  placeholder="Enter the Email"/>
             <button className="btn btn-warning ">Subscribe</button>
           </div>
           <div className="d-flex gap-5 mt-4 ps-4">

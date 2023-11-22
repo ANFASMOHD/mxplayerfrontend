@@ -3,8 +3,9 @@ import VideoCard from "../components/ViedoCard";
 import { getAllViedos } from "../services/appApi";
 import { useEffect, useState } from "react";
 
-const View = () => {
+const View = ({UploadVideoStatus}) => {
   const [allviedos, setAllViedos] = useState([]);
+  const [deleteVideoStatus, setDeleteVideoStatus]=useState(false)
 
   const getUploadViedos = async () => {
     const responce = await getAllViedos();
@@ -13,7 +14,8 @@ const View = () => {
 
   useEffect(() => {
     getUploadViedos();
-  }, []);
+    setDeleteVideoStatus(false)
+  }, [UploadVideoStatus,deleteVideoStatus]);
 
   return (
     <div>
@@ -21,7 +23,7 @@ const View = () => {
         {allviedos.length > 0 ? (
           allviedos?.map((item) => (
             <Col sm={12} md={6} lg={4} xl={3}>
-              <VideoCard item={item}/>
+              <VideoCard item={item} setDeleteVideoStatus={setDeleteVideoStatus}/>
             </Col>
           ))
         ) : (
